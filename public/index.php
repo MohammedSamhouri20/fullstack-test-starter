@@ -2,8 +2,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use App\Scandiweb\Controller\GraphQL as GraphQLController;
+
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
-    $r->post('/graphql', [App\Controller\GraphQL::class, 'handle']);
+    $r->post('/graphql', [GraphQLController::class, 'handle']);
 });
 
 $routeInfo = $dispatcher->dispatch(

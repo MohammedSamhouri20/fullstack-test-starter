@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
+class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -14,6 +14,7 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -25,9 +26,13 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
             'Symfony\\Polyfill\\Intl\\Grapheme\\' => 31,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Contracts\\Cache\\' => 24,
+            'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\VarExporter\\' => 30,
             'Symfony\\Component\\String\\' => 25,
+            'Symfony\\Component\\Dotenv\\' => 25,
             'Symfony\\Component\\Console\\' => 26,
+            'Symfony\\Component\\Cache\\' => 24,
         ),
         'P' => 
         array (
@@ -36,14 +41,14 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
             'Psr\\Cache\\' => 10,
             'PhpOption\\' => 10,
         ),
-        'M' => 
-        array (
-            'Mohammadalsamhoury\\Scandiweb\\' => 29,
-        ),
         'G' => 
         array (
             'GraphQL\\' => 8,
             'GrahamCampbell\\ResultType\\' => 26,
+        ),
+        'F' => 
+        array (
+            'FastRoute\\' => 10,
         ),
         'D' => 
         array (
@@ -57,6 +62,10 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Collections\\' => 28,
             'Doctrine\\Common\\' => 16,
+        ),
+        'A' => 
+        array (
+            'App\\Scandiweb\\' => 14,
         ),
     );
 
@@ -85,6 +94,14 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
         array (
             0 => __DIR__ . '/..' . '/symfony/service-contracts',
         ),
+        'Symfony\\Contracts\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/cache-contracts',
+        ),
+        'Symfony\\Component\\Yaml\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
         'Symfony\\Component\\VarExporter\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/var-exporter',
@@ -93,9 +110,17 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
         array (
             0 => __DIR__ . '/..' . '/symfony/string',
         ),
+        'Symfony\\Component\\Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/dotenv',
+        ),
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Symfony\\Component\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/cache',
         ),
         'Psr\\Log\\' => 
         array (
@@ -113,10 +138,6 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
-        'Mohammadalsamhoury\\Scandiweb\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'GraphQL\\' => 
         array (
             0 => __DIR__ . '/..' . '/webonyx/graphql-php/src',
@@ -124,6 +145,10 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
+        'FastRoute\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
         'Dotenv\\' => 
         array (
@@ -165,6 +190,10 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
         array (
             0 => __DIR__ . '/..' . '/doctrine/event-manager/src',
         ),
+        'App\\Scandiweb\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
     );
 
     public static $classMap = array (
@@ -175,14 +204,15 @@ class ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+        '©' => __DIR__ . '/..' . '/symfony/cache/Traits/ValueWrapper.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit04ee11db0e6764f0fc6d631ed661eb33::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69::$classMap;
 
         }, null, ClassLoader::class);
     }
