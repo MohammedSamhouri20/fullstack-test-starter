@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Scandiweb\Models;
+namespace App\Models;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,10 +17,11 @@ class Price
     private float $amount;
 
     #[ORM\ManyToOne(targetEntity: Currency::class)]
-    #[ORM\JoinColumn(name: "currency_label", referencedColumnName: "label")]
+    #[ORM\JoinColumn(name: "currency_label", referencedColumnName: "label", nullable: false)]
     private Currency $currency;
 
-    #[ORM\ManyToOne(targetEntity: AbstractProduct::class, inversedBy: "prices")]
+    #[ORM\ManyToOne(targetEntity: AbstractProduct::class, inversedBy: "prices", fetch: "EAGER")]
+    #[ORM\JoinColumn(name: "product_id", referencedColumnName: "id", nullable: false)]
     private AbstractProduct $product;
 
     public function __construct(float $amount, Currency $currency, AbstractProduct $product)

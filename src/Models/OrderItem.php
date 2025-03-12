@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Scandiweb\Models;
+namespace App\Models;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,5 +27,18 @@ class OrderItem
         $this->product = $product;
         $this->quantity = $quantity;
         $this->order = $order;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    public function getProduct(): AbstractProduct
+    {
+        return $this->product;
+    }
+    public function getQuantity(): int
+    {
+        return $this->quantity;
     }
 }

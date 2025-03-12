@@ -1,18 +1,23 @@
 <?php
 
-namespace App\Scandiweb\Models;
+namespace App\Models;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
-#[ORM\MappedSuperclass]
+#[ORM\Entity]
+#[ORM\Table(name: "products")]
+#[ORM\InheritanceType("SINGLE_TABLE")]
+#[ORM\DiscriminatorColumn(name: "type", type: "string")]
+#[ORM\DiscriminatorMap(["clothing" => ClothingProduct::class, "tech" => TechProduct::class])]
 abstract class AbstractProduct
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", unique: true, length: 36)]
     protected string $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 191)]
     protected string $name;
 
     #[ORM\Column(type: "boolean")]
@@ -21,17 +26,21 @@ abstract class AbstractProduct
     #[ORM\Column(type: "text")]
     protected string $description;
 
-    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\Column(type: "text")]
+    protected string $brand;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: "EAGER")]
+    #[ORM\JoinColumn(name: "category_id", referencedColumnName: "id", nullable: false)]
     protected Category $category;
 
-    #[ORM\OneToMany(mappedBy: "product", targetEntity: Price::class, cascade: ["persist"])]
-    protected $prices;
+    #[ORM\OneToMany(mappedBy: "product", targetEntity: Price::class, cascade: ["persist"], fetch: "EAGER")]
+    protected Collection $prices;
 
-    #[ORM\OneToMany(mappedBy: "product", targetEntity: AbstractAttribute::class, cascade: ["persist"])]
-    protected $attributes;
+    #[ORM\OneToMany(mappedBy: "product", targetEntity: AttributeItem::class, cascade: ["persist"], fetch: "EAGER")]
+    protected Collection $attributeItems;
 
-    #[ORM\Column(type: "json")]
-    protected array $gallery;
+    #[ORM\Column(type: "text")]
+    protected string $gallery;
 
     public function __construct(
         string $id,
@@ -39,7 +48,8 @@ abstract class AbstractProduct
         bool $inStock,
         string $description,
         Category $category,
-        array $gallery
+        array $gallery,
+        string $brand
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -47,8 +57,54 @@ abstract class AbstractProduct
         $this->description = $description;
         $this->category = $category;
         $this->prices = new ArrayCollection();
-        $this->attributes = new ArrayCollection();
-        $this->gallery = $gallery;
+        $this->attributeItems = new ArrayCollection();
+        $this->gallery = json_encode($gallery);
+        $this->brand = $brand;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function isInStock(): bool
+    {
+        return $this->inStock;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getCategory(): Category
+    {
+        return $this->category;
+    }
+
+    public function getPrices(): Collection
+    {
+        return $this->prices;
+    }
+
+    public function getGallery(): array
+    {
+        return json_decode($this->gallery, true) ?? [];
+    }
+
+    public function getBrand(): string
+    {
+        return $this->brand;
+    }
+
+    public function getAttributeItems(): Collection
+    {
+        return $this->attributeItems;
     }
 
     abstract public function getProductType(): string;

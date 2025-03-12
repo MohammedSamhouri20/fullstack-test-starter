@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
+class ComposerStaticInit95080e86e2debb18636e2948a6e34220
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -30,6 +30,7 @@ class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\VarExporter\\' => 30,
             'Symfony\\Component\\String\\' => 25,
+            'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Dotenv\\' => 25,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Cache\\' => 24,
@@ -55,6 +56,7 @@ class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
             'Dotenv\\' => 7,
             'Doctrine\\Persistence\\' => 21,
             'Doctrine\\ORM\\' => 13,
+            'Doctrine\\Migrations\\' => 20,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Deprecations\\' => 22,
@@ -65,7 +67,7 @@ class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
         ),
         'A' => 
         array (
-            'App\\Scandiweb\\' => 14,
+            'App\\' => 4,
         ),
     );
 
@@ -109,6 +111,10 @@ class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
         'Symfony\\Component\\String\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/string',
+        ),
+        'Symfony\\Component\\Stopwatch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/stopwatch',
         ),
         'Symfony\\Component\\Dotenv\\' => 
         array (
@@ -162,6 +168,10 @@ class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
         array (
             0 => __DIR__ . '/..' . '/doctrine/orm/src',
         ),
+        'Doctrine\\Migrations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/migrations/src',
+        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -190,7 +200,7 @@ class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
         array (
             0 => __DIR__ . '/..' . '/doctrine/event-manager/src',
         ),
-        'App\\Scandiweb\\' => 
+        'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
@@ -210,9 +220,9 @@ class ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInita0e67b233cd18b6dd02789c439fc8c69::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit95080e86e2debb18636e2948a6e34220::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit95080e86e2debb18636e2948a6e34220::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit95080e86e2debb18636e2948a6e34220::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Scandiweb\Models;
+namespace App\Models;
 
 use Doctrine\ORM\Mapping as ORM;
 

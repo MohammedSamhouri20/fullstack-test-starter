@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Scandiweb\Models;
+namespace App\Models;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,24 +9,35 @@ use Doctrine\ORM\Mapping as ORM;
 class AttributeItem
 {
     #[ORM\Id]
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 36)]
     private string $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 191)]
     private string $displayValue;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 191)]
     private string $value;
 
     #[ORM\ManyToOne(targetEntity: AbstractAttribute::class, inversedBy: "items")]
+    #[ORM\JoinColumn(nullable: false)]
     private AbstractAttribute $attribute;
 
-    public function __construct(string $id, string $displayValue, string $value, AbstractAttribute $attribute)
-    {
+    #[ORM\ManyToOne(targetEntity: AbstractProduct::class, inversedBy: "attributeItems")]
+    #[ORM\JoinColumn(nullable: false)]
+    private AbstractProduct $product;
+
+    public function __construct(
+        string $id,
+        string $displayValue,
+        string $value,
+        AbstractAttribute $attribute,
+        AbstractProduct $product
+    ) {
         $this->id = $id;
         $this->displayValue = $displayValue;
         $this->value = $value;
         $this->attribute = $attribute;
+        $this->product = $product;
     }
 
     public function getId(): string
@@ -47,5 +58,10 @@ class AttributeItem
     public function getAttribute(): AbstractAttribute
     {
         return $this->attribute;
+    }
+
+    public function getProduct(): AbstractProduct
+    {
+        return $this->product;
     }
 }
