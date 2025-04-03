@@ -1,0 +1,5 @@
+// Step 1: Override the default variable before importing Bootstrap
+$primary: #5ece7b; // Change this to your desired color
+$body-color: #1d1f22;
+// Step 2: Import Bootstrap SCSS
+@import "../../node_modules/bootstrap/scss/bootstrap";

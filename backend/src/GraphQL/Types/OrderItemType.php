@@ -19,6 +19,7 @@ class OrderItemType
                     'id' => Type::nonNull(Type::int()),
                     'product' => ProductType::get(),
                     'quantity' => Type::nonNull(Type::int()),
+                    'selectedAttributes' => Type::nonNull(Type::listOf(Type::nonNull(Type::string()))),
                 ],
                 'resolveField' => function ($orderItem, $args, $context, $info) {
                     if ($info->fieldName === '__typename') {
@@ -31,6 +32,8 @@ class OrderItemType
                             return ProductMapper::mapSingle($orderItem->getProduct());
                         case 'quantity':
                             return $orderItem->getQuantity();
+                        case 'selectedAttributes':
+                            return json_decode($orderItem->getSelectedAttributes(), true); // Return as array
                         default:
                             return null;
                     }

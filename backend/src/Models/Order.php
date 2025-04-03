@@ -21,10 +21,14 @@ class Order
     #[ORM\OneToMany(mappedBy: "order", targetEntity: OrderItem::class, cascade: ["persist"])]
     private $items;
 
+    #[ORM\Column(type: "decimal", precision: 10, scale: 2)]
+    private float $totalPrice;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->items = new ArrayCollection();
+        $this->totalPrice = 0.00;
     }
 
     public function getId(): int
@@ -40,5 +44,25 @@ class Order
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
+    }
+
+    public function getTotalPrice(): float
+    {
+        return $this->totalPrice;
+    }
+
+    public function updateTotalPrice(): void
+    {
+        $total = 0.00;
+        foreach ($this->items as $item) {
+            // Convert the prices collection to an array
+            $prices = $item->getProduct()->getPrices()->toArray();
+            // Assuming you want to use the first price in the array
+            if (!empty($prices)) {
+                $price = $prices[0]->getAmount();
+                $total += $item->getQuantity() * $price;
+            }
+        }
+        $this->totalPrice = round($total, 2);
     }
 }

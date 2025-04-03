@@ -16,17 +16,32 @@ class Schema
 {
     public static function build(): array
     {
-        // Define OrderItemInput type
         $orderItemInputType = new InputObjectType([
             'name' => 'OrderItemInput',
             'fields' => [
                 'productId' => [
-                    'type' => Type::nonNull(Type::string()), // Changed to string to match your input
+                    'type' => Type::nonNull(Type::string()),
                     'description' => 'The ID of the product',
                 ],
                 'quantity' => [
                     'type' => Type::nonNull(Type::int()),
                     'description' => 'The quantity of the product',
+                ],
+                'selectedAttributes' => [
+                    'type' => Type::nonNull(Type::listOf(new InputObjectType([
+                        'name' => 'AttributeInput',
+                        'fields' => [
+                            'key' => [
+                                'type' => Type::nonNull(Type::string()),
+                                'description' => 'The attribute name',
+                            ],
+                            'value' => [
+                                'type' => Type::nonNull(Type::string()),
+                                'description' => 'The attribute value',
+                            ],
+                        ],
+                    ]))),
+                    'description' => 'The selected attributes for the product',
                 ],
             ],
         ]);
@@ -74,7 +89,7 @@ class Schema
         $mutationType = new ObjectType([
             'name' => 'Mutation',
             'fields' => [
-                'createOrder' => [
+                'placeOrder' => [
                     'type' => OrderType::get(),
                     'args' => [
                         'input' => [
@@ -83,7 +98,7 @@ class Schema
                     ],
                     'resolve' => function ($root, $args, $context) {
                         $orderResolver = new OrderResolver($context['orderService']);
-                        return $orderResolver->resolveCreateOrder($root, $args, $context);
+                        return $orderResolver->resolvePlaceOrder($root, $args, $context);
                     },
                 ],
             ],

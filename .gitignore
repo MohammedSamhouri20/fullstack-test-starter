@@ -1,3 +1,5 @@
 # Backend
 /backend/vendor/
 /backend/.env
+# Frontend
+/frontend/Scandiweb/node_modules/

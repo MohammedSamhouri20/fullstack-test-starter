@@ -16,13 +16,14 @@ class OrderService
         $this->entityManager = $entityManager;
     }
 
-    public function createOrder(array $itemsInput): Order
+    public function placeOrder(array $itemsInput): Order
     {
         $order = new Order();
 
         foreach ($itemsInput as $itemInput) {
             $productId = $itemInput['productId'] ?? null;
             $quantity = $itemInput['quantity'] ?? 1;
+            $selectedAttributes = $itemInput['selectedAttributes'] ?? [];
 
             if ($productId === null || $quantity < 1) {
                 throw new \InvalidArgumentException('Invalid product ID or quantity');
@@ -33,9 +34,13 @@ class OrderService
                 throw new \RuntimeException("Product with ID $productId not found");
             }
 
-            $orderItem = new OrderItem($product, $quantity, $order);
+            // Create the OrderItem and add it to the order
+            $orderItem = new OrderItem($product, $quantity, $order, $selectedAttributes);
             $order->getItems()->add($orderItem);
         }
+
+        // Update total price after all items have been added
+        $order->updateTotalPrice();
 
         $this->entityManager->persist($order);
         $this->entityManager->flush();

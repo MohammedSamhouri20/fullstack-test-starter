@@ -1,0 +1,29 @@
+.productCard:hover {
+  filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+  cursor: pointer;
+}
+.quickShopBtn {
+  display: none;
+}
+.productCard:hover .quickShopBtn {
+  display: flex;
+}
+.outOfStockImage {
+  opacity: 50%;
+}
+.outOfStockPrice {
+  color: #8d8f9a;
+}
+.outOfStockLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  line-height: 160%;
+  transform: translate(-50%, -50%);
+  color: #8d8f9a;
+  font-size: 24px;
+  font-weight: normal;
+  text-transform: uppercase;
+}

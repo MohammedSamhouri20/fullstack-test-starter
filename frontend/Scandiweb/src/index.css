@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&family=Roboto+Condensed:wght@100..900&family=Source+Sans+Pro:wght@100..900&family=Roboto:wght@100..900&display=swap");
+
+:root {
+  --font-primary: "Raleway", sans-serif; /* Headings, Prices */
+  --font-secondary: "Roboto Condensed", sans-serif; /* Attribute Names */
+  --font-tertiary: "Source Sans Pro", sans-serif; /* Attribute Values */
+  --font-body: "Roboto", sans-serif; /* Product Description */
+}
+
+body {
+  font-family: var(--font-primary) !important;
+}

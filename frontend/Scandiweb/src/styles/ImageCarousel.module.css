@@ -1,0 +1,49 @@
+.thumbnail {
+  border-radius: 0px;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.thumbnail:hover {
+  border-color: #000000;
+}
+
+/* Active thumbnail styling */
+.activeThumbnail {
+  border-color: #000000 !important;
+}
+
+/* Styling for the main carousel container */
+.carousel {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Ensures images fill the carousel while maintaining aspect ratio */
+.carouselItem img {
+  object-fit: cover;
+  max-height: 400px;
+  width: 100%;
+}
+
+/* Custom controls for better visibility */
+.carouselControl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.73) !important;
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+}
+
+/* Scrollbar Styling */
+.scrollContainer {
+  scrollbar-width: thin;
+  padding-right: 10px;
+  scrollbar-color: #000000 #ffffff; /* Green scrollbar with light gray track */
+  overflow-y: auto;
+  overflow-x: hidden;
+}

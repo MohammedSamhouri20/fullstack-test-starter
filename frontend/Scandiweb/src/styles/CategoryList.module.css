@@ -1,0 +1,4 @@
+.active {
+  border-bottom: 2px solid var(--bs-primary) !important;
+  color: var(--bs-primary);
+}

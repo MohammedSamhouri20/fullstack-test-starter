@@ -14,10 +14,10 @@ class OrderResolver
         $this->orderService = $orderService;
     }
 
-    public function resolveCreateOrder($root, array $args, $context)
+    public function resolvePlaceOrder($root, array $args, $context)
     {
         $items = $args['input']['items'] ?? [];
-        $order = $this->orderService->createOrder($items);
+        $order = $this->orderService->placeOrder($items);
         return $order;
     }
 }

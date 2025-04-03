@@ -1,0 +1,14 @@
+.greyed-out-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(57, 55, 72, 0.22);
+  z-index: 10; /* Higher than content, lower than header */
+}
+
+.header {
+  position: relative;
+  z-index: 20; /* Higher than the overlay */
+}

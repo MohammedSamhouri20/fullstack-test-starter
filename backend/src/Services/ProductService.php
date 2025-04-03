@@ -18,18 +18,10 @@ class ProductService
     public function getProductsByFilters(array $filters = []): array
     {
         $repository = $this->entityManager->getRepository(AbstractProduct::class);
-        $queryBuilder = $repository->createQueryBuilder('p');
-
-        // Filter by id (assuming it's a single ID or an array of IDs)
         if (isset($filters['id'])) {
-            if (is_array($filters['id'])) {
-                $queryBuilder->andWhere('p.id IN (:ids)')
-                    ->setParameter('ids', $filters['id']);
-            } else {
-                $queryBuilder->andWhere('p.id = :id')
-                    ->setParameter('id', $filters['id']);
-            }
+            return ProductMapper::map($repository->findBy(['id' => $filters['id']]));
         }
+        $queryBuilder = $repository->createQueryBuilder('p');
 
         // Filter by name (use LIKE to check if the name contains the words provided)
         if (isset($filters['name'])) {
@@ -46,9 +38,9 @@ class ProductService
                 ->setParameter('brand', $filters['brand']);
         }
 
-        // Filter by category
         if (isset($filters['category'])) {
-            $queryBuilder->andWhere('p.category = :category')
+            $queryBuilder->join('p.category', 'c')
+                ->andWhere('c.name = :category')
                 ->setParameter('category', $filters['category']);
         }
 
