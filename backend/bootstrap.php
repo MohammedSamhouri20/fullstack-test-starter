@@ -13,7 +13,7 @@ $dotenv->load();
 
 $config = ORMSetup::createAttributeMetadataConfiguration(
     paths: [__DIR__ . '/src/Models'],
-    isDevMode: false,
+    isDevMode: true,
 );
 
 // Configuring the database connection
