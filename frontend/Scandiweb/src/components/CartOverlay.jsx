@@ -6,7 +6,7 @@ function CartOverlay({ className }) {
   const { cartItems, getTotalPrice, placeOrder, getTotalItems } = useCart();
 
   return (
-    <div className={className}>
+    <div data-testid="cart-overlay" className={className}>
       <div className="container-fluid py-4 px-3">
         <div className="row justify-content-between gap-4">
           <div className="col-12">

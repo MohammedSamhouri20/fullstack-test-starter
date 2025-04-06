@@ -7,11 +7,9 @@ import App from "./App.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <ApolloProvider client={client}>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </ApolloProvider>
-  </StrictMode>
+  <ApolloProvider client={client}>
+    <CartProvider>
+      <App />
+    </CartProvider>
+  </ApolloProvider>
 );

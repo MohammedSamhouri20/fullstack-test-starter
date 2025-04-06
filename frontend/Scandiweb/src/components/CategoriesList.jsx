@@ -19,10 +19,18 @@ function CategoriesList() {
   return (
     <ul className="list-group list-group-horizontal text-uppercase fw-semibold">
       {categories.map((category) => (
-        <Link key={category.name} className="text-decoration-none" to="/">
+        <Link
+          key={category.name}
+          className="text-decoration-none"
+          to={`/${category.name}`}
+          data-testid={`${
+            selectedCategory === category.name
+              ? "active-category-link"
+              : "category-link"
+          }`}
+        >
           <CategoryLink
             category={category.name}
-            isActive={selectedCategory === category.name}
             className={selectedCategory === category.name ? styles.active : ""}
             onClick={() => setSelectedCategory(category.name)}
           />

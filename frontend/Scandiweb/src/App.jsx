@@ -22,6 +22,7 @@ function App() {
 
         <ProductProvider>
           <Routes>
+            <Route path="/:category" element={<ProductListingPage />} />
             <Route path="/" element={<ProductListingPage />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
           </Routes>

@@ -8,12 +8,12 @@ use Dotenv\Dotenv;
 
 require_once "vendor/autoload.php";
 
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createUnsafeImmutable(__DIR__);
 $dotenv->load();
 
 $config = ORMSetup::createAttributeMetadataConfiguration(
     paths: [__DIR__ . '/src/Models'],
-    isDevMode: true,
+    isDevMode: false,
 );
 
 // Configuring the database connection

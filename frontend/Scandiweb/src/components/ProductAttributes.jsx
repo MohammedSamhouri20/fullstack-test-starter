@@ -33,6 +33,11 @@ function ProductAttributes({ attributes, setSelectedAttributes }) {
                 {attribute.items.map((item) => (
                   <button
                     key={item.value}
+                    data-testid={`product-attribute-${attribute.name
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}-${item.value
+                      .toUpperCase()
+                      .replace(/\s+/g, "-")}`}
                     className={`btn border border-1 border-black w-100 rounded-0 me-2 ${
                       selectedAttribute[attribute.name] === item.value
                         ? "btn-dark text-white"
@@ -57,6 +62,11 @@ function ProductAttributes({ attributes, setSelectedAttributes }) {
                 {attribute.items.map((item) => (
                   <button
                     key={item.value}
+                    data-testid={`product-attribute-${attribute.name
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}-${item.value
+                      .toUpperCase()
+                      .replace(/\s+/g, "-")}`}
                     className={`border ${
                       selectedAttribute[attribute.name] === item.value
                         ? "border-primary border-1"
