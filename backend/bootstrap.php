@@ -1,6 +1,5 @@
 <?php
 
-// bootstrap.php
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
@@ -16,7 +15,6 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
     isDevMode: true,
 );
 
-// Configuring the database connection
 $connection = DriverManager::getConnection([
     'dbname'   => $_ENV['DB_NAME'],
     'user'     => $_ENV['DB_USER'],
@@ -25,7 +23,6 @@ $connection = DriverManager::getConnection([
     'driver'   => 'pdo_mysql',
 ], $config);
 
-// Obtaining the entity manager
 $entityManager = new EntityManager($connection, $config);
 
 return $entityManager;

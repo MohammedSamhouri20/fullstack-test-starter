@@ -1,4 +1,4 @@
-import { useCategory } from "../context/CategoryContext";
+import { useCategory } from "../hooks/useCategory";
 import CategoryLink from "./CategoryLink";
 import styles from "../styles/CategoryList.module.css";
 import { Link } from "react-router-dom";
@@ -9,8 +9,8 @@ function CategoriesList() {
 
   if (loading)
     return (
-      <span class="placeholder-glow">
-        <span class="placeholder col-12 bg-primary"></span>
+      <span className="placeholder-glow">
+        <span className="placeholder col-12 bg-primary"></span>
       </span>
     );
 
@@ -39,5 +39,4 @@ function CategoriesList() {
     </ul>
   );
 }
-
 export default CategoriesList;

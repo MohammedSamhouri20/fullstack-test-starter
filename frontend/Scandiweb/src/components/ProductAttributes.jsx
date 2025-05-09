@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../styles/ProductDetails.module.css";
+import { toKebabCase } from "../utils/toKebabCase";
 
 function ProductAttributes({ attributes, setSelectedAttributes }) {
   const [selectedAttribute, setSelectedAttribute] = useState({});
@@ -10,7 +11,7 @@ function ProductAttributes({ attributes, setSelectedAttributes }) {
       [attributeName]: itemValue,
     };
     setSelectedAttribute(updatedAttributes);
-    setSelectedAttributes(updatedAttributes); // Update parent state
+    setSelectedAttributes(updatedAttributes);
   };
 
   return (
@@ -18,10 +19,8 @@ function ProductAttributes({ attributes, setSelectedAttributes }) {
       {attributes.map((attribute) => (
         <div
           key={attribute.name}
-          data-testid={`product-attribute-${attribute.name
-            .toLowerCase()
-            .replace(/\s+/g, "-")}`}
-          className="text-uppercase "
+          data-testid={`product-attribute-${toKebabCase(attribute.name)}`}
+          className="text-uppercase"
         >
           {/* Text-based attributes */}
           {attribute.type === "text" ? (
@@ -33,11 +32,9 @@ function ProductAttributes({ attributes, setSelectedAttributes }) {
                 {attribute.items.map((item) => (
                   <button
                     key={item.value}
-                    data-testid={`product-attribute-${attribute.name
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")}-${item.value
-                      .toUpperCase()
-                      .replace(/\s+/g, "-")}`}
+                    data-testid={`product-attribute-${toKebabCase(
+                      attribute.name
+                    )}-${toKebabCase(item.value, true)}`}
                     className={`btn border border-1 border-black w-100 rounded-0 me-2 ${
                       selectedAttribute[attribute.name] === item.value
                         ? "btn-dark text-white"
@@ -62,11 +59,9 @@ function ProductAttributes({ attributes, setSelectedAttributes }) {
                 {attribute.items.map((item) => (
                   <button
                     key={item.value}
-                    data-testid={`product-attribute-${attribute.name
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")}-${item.value
-                      .toUpperCase()
-                      .replace(/\s+/g, "-")}`}
+                    data-testid={`product-attribute-${toKebabCase(
+                      attribute.name
+                    )}-${toKebabCase(item.value, true)}`}
                     className={`border ${
                       selectedAttribute[attribute.name] === item.value
                         ? "border-primary border-1"
@@ -90,5 +85,4 @@ function ProductAttributes({ attributes, setSelectedAttributes }) {
     </>
   );
 }
-
 export default ProductAttributes;

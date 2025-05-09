@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
-import ProductCard from "../components/ProductCard"; // Import ProductCard
-import { useProducts } from "../context/ProductContext"; // Import useProducts
-import { useCategory } from "../context/CategoryContext"; // Import useCategory
-import { useParams } from "react-router-dom"; // Import useParams from react-router-dom
+import { useEffect } from "react";
+import ProductCard from "../components/ProductCard";
+import { useProduct } from "../hooks/useProduct";
+import { useCategory } from "../hooks/useCategory";
+import { useParams } from "react-router-dom";
 
 function ProductListingPage() {
-  const { products, loading, error } = useProducts(); // Fetch products
-  const { setSelectedCategory } = useCategory(); // Get the function to set the category
-  const { category } = useParams(); // Get the category from the URL
+  const { products, loading, error } = useProduct();
+  const { setSelectedCategory } = useCategory();
+  const { category } = useParams();
 
   useEffect(() => {
-    // Set the selected category based on the URL
-    setSelectedCategory(category || "all"); // Default to "all" if no category is provided in the URL
+    setSelectedCategory(category || "all");
   }, [category, setSelectedCategory]);
 
   if (loading)
@@ -32,7 +31,7 @@ function ProductListingPage() {
     <div className="container">
       <div className="row mb-3">
         <h2 className="col-auto fw-normal p-3 lh-lg text-capitalize">
-          {category === "all" ? "All" : category}
+          {category === "all" || category === undefined ? "All" : category}
         </h2>
       </div>
       <div className="row gx-2 gy-4 p-0">
@@ -48,5 +47,4 @@ function ProductListingPage() {
     </div>
   );
 }
-
 export default ProductListingPage;

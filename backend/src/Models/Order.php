@@ -55,9 +55,7 @@ class Order
     {
         $total = 0.00;
         foreach ($this->items as $item) {
-            // Convert the prices collection to an array
             $prices = $item->getProduct()->getPrices()->toArray();
-            // Assuming you want to use the first price in the array
             if (!empty($prices)) {
                 $price = $prices[0]->getAmount();
                 $total += $item->getQuantity() * $price;

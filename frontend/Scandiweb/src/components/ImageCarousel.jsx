@@ -28,7 +28,6 @@ function ImageCarousel({ images }) {
           />
         ))}
       </div>
-
       {/* Bootstrap Carousel */}
       <div id="ImageCarousel" className="carousel w-100 slide">
         <div className="carousel-inner d-flex h-100">
@@ -47,7 +46,6 @@ function ImageCarousel({ images }) {
             </div>
           ))}
         </div>
-
         {/* Carousel Controls */}
         <button
           style={{ left: "1rem" }}
@@ -81,5 +79,4 @@ function ImageCarousel({ images }) {
     </div>
   );
 }
-
 export default ImageCarousel;

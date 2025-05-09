@@ -1,7 +1,9 @@
-import { useCart } from "../context/CartContext";
+import { useCart } from "../hooks/useCart";
+import { toKebabCase } from "../utils/toKebabCase";
 
 function CartItem({ item }) {
   const { updateQuantity } = useCart();
+
   return (
     <div className="col-12 container-fluid">
       <div className="row justify-content-between gap-2">
@@ -14,19 +16,15 @@ function CartItem({ item }) {
               {item.prices[0].amount.toFixed(2)}
             </div>
           </div>
-
           {/* Attributes */}
           {item.attributes.map((attribute) => (
             <div
               key={attribute.name}
-              data-testid={`cart-item-attribute-${attribute.name
-                .toLowerCase()
-                .replace(/\s+/g, "-")}`}
+              data-testid={`cart-item-attribute-${toKebabCase(attribute.name)}`}
               style={{ fontSize: "14px" }}
               className="d-flex flex-column gap-2"
             >
               <div className="fw-normal">{attribute.name}:</div>
-
               {/* Text-based attributes (Size, Capacity, etc.) */}
               {attribute.type === "text" ? (
                 <div className="d-flex gap-2">
@@ -35,16 +33,12 @@ function CartItem({ item }) {
                       data-testid={
                         item.selectedOptions[attribute.name] ===
                         attributeItem.value
-                          ? `cart-item-attribute-${attribute.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}-${attribute.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}-selected`
-                          : `cart-item-attribute-${attribute.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}-${attribute.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}`
+                          ? `cart-item-attribute-${toKebabCase(
+                              attribute.name
+                            )}-${toKebabCase(attribute.name)}-selected`
+                          : `cart-item-attribute-${toKebabCase(
+                              attribute.name
+                            )}-${toKebabCase(attribute.name)}`
                       }
                       key={attributeItem.value}
                       className={`border border-black w-100 text-center ${
@@ -67,16 +61,12 @@ function CartItem({ item }) {
                       data-testid={
                         item.selectedOptions[attribute.name] ===
                         attributeItem.value
-                          ? `cart-item-attribute-${attribute.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}-${attribute.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}-selected`
-                          : `cart-item-attribute-${attribute.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}-${attribute.name
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}`
+                          ? `cart-item-attribute-${toKebabCase(
+                              attribute.name
+                            )}-${toKebabCase(attribute.name)}-selected`
+                          : `cart-item-attribute-${toKebabCase(
+                              attribute.name
+                            )}-${toKebabCase(attribute.name)}`
                       }
                       className={`border border-1 ${
                         item.selectedOptions[attribute.name] ===
@@ -96,7 +86,6 @@ function CartItem({ item }) {
             </div>
           ))}
         </div>
-
         {/* Right Section */}
         <div className="col-6 d-flex p-0 m-0 gap-2 justify-content-between">
           {/* Quantity Control */}
@@ -123,7 +112,6 @@ function CartItem({ item }) {
               -
             </button>
           </div>
-
           {/* Product Image */}
           <div>
             <img

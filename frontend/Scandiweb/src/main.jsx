@@ -4,12 +4,14 @@ import { ApolloProvider } from "@apollo/client";
 import client from "./apolloClient.js";
 import "./index.css";
 import App from "./App.jsx";
-import { CartProvider } from "./context/CartContext.jsx";
+import { CartProvider } from "./context/CartProvider";
 
 createRoot(document.getElementById("root")).render(
-  <ApolloProvider client={client}>
-    <CartProvider>
-      <App />
-    </CartProvider>
-  </ApolloProvider>
+  <StrictMode>
+    <ApolloProvider client={client}>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </ApolloProvider>
+  </StrictMode>
 );

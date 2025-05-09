@@ -34,12 +34,10 @@ class OrderService
                 throw new \RuntimeException("Product with ID $productId not found");
             }
 
-            // Create the OrderItem and add it to the order
             $orderItem = new OrderItem($product, $quantity, $order, $selectedAttributes);
             $order->getItems()->add($orderItem);
         }
 
-        // Update total price after all items have been added
         $order->updateTotalPrice();
 
         $this->entityManager->persist($order);

@@ -1,9 +1,11 @@
 .productAttribute {
   font-family: var(--font-secondary);
 }
+
 .productAttributeValue {
   font-family: var(--font-tertiary);
 }
+
 .productDescription {
   font-family: var(--font-body);
 }

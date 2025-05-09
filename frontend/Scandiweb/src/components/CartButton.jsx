@@ -1,8 +1,9 @@
-import React from "react";
-import CartIcon from "../assets/CartIcon.jsx";
-import { useCart } from "../context/CartContext.jsx";
+import CartIcon from "../assets/CartIcon";
+import { useCart } from "../hooks/useCart";
+
 function CartButton({ toggleCartOverlay }) {
   const { getTotalItems } = useCart();
+
   return (
     <button
       className="btn border-0 p-0 position-relative"
@@ -25,5 +26,4 @@ function CartButton({ toggleCartOverlay }) {
     </button>
   );
 }
-
 export default CartButton;

@@ -28,7 +28,6 @@
   width: 100%;
 }
 
-/* Custom controls for better visibility */
 .carouselControl {
   position: absolute;
   top: 50%;
@@ -43,7 +42,7 @@
 .scrollContainer {
   scrollbar-width: thin;
   padding-right: 10px;
-  scrollbar-color: #000000 #ffffff; /* Green scrollbar with light gray track */
+  scrollbar-color: #000000 #ffffff;
   overflow-y: auto;
   overflow-x: hidden;
 }

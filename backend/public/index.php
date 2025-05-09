@@ -6,7 +6,7 @@ use App\Controller\GraphQL as GraphQLController;
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->post('/graphql', [GraphQLController::class, 'handle']);
-    $r->addRoute('OPTIONS', '/graphql', [GraphQLController::class, 'handle']); // Add OPTIONS route
+    $r->addRoute('OPTIONS', '/graphql', [GraphQLController::class, 'handle']);
 });
 
 $routeInfo = $dispatcher->dispatch(
@@ -25,12 +25,9 @@ switch ($routeInfo[0]) {
         echo json_encode(['error' => 'Method Not Allowed', 'allowed' => $allowedMethods]);
         break;
     case FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1]; // [GraphQLController::class, 'handle']
+        $handler = $routeInfo[1];
         $vars = $routeInfo[2];
-
-        // Get EntityManager
         $entityManager = require_once __DIR__ . '/../bootstrap.php';
-        // Instantiate GraphQLController and call handle()
         $controller = new $handler[0]($entityManager);
         echo $controller->{$handler[1]}($vars);
         break;

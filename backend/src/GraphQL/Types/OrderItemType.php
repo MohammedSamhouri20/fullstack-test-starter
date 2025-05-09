@@ -33,7 +33,7 @@ class OrderItemType
                         case 'quantity':
                             return $orderItem->getQuantity();
                         case 'selectedAttributes':
-                            return json_decode($orderItem->getSelectedAttributes(), true); // Return as array
+                            return json_decode($orderItem->getSelectedAttributes(), true);
                         default:
                             return null;
                     }

@@ -1,4 +1,4 @@
-function CategoryLink({ category, onClick, className, isActive }) {
+function CategoryLink({ category, onClick, className }) {
   return (
     <li
       style={{ cursor: "pointer", height: "56px" }}
@@ -9,5 +9,4 @@ function CategoryLink({ category, onClick, className, isActive }) {
     </li>
   );
 }
-
 export default CategoryLink;

@@ -46,7 +46,6 @@ class Schema
             ],
         ]);
 
-        // Define OrderInput type
         $orderInputType = new InputObjectType([
             'name' => 'OrderInput',
             'fields' => [
@@ -57,7 +56,6 @@ class Schema
             ],
         ]);
 
-        // Define Query type
         $queryType = new ObjectType([
             'name' => 'Query',
             'fields' => [
@@ -85,7 +83,6 @@ class Schema
             ],
         ]);
 
-        // Define Mutation type
         $mutationType = new ObjectType([
             'name' => 'Mutation',
             'fields' => [
@@ -104,7 +101,6 @@ class Schema
             ],
         ]);
 
-        // Return schema with both Query and Mutation
         return [
             'query' => $queryType,
             'mutation' => $mutationType,

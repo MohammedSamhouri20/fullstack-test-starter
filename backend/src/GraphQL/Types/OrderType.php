@@ -17,7 +17,7 @@ class OrderType
                 'fields' => [
                     'id' => Type::nonNull(Type::int()),
                     'createdAt' => Type::nonNull(Type::string()),
-                    'totalPrice' => Type::nonNull(Type::float()),  // Add the totalPrice field
+                    'totalPrice' => Type::nonNull(Type::float()),
                     'items' => Type::listOf(OrderItemType::get()),
                 ],
                 'resolveField' => function ($order, $args, $context, $info) {
@@ -28,8 +28,8 @@ class OrderType
                         case 'id':
                             return $order->getId();
                         case 'createdAt':
-                            return $order->getCreatedAt()->format('c'); // ISO 8601 format
-                        case 'totalPrice': // Resolver for totalPrice
+                            return $order->getCreatedAt()->format('c');
+                        case 'totalPrice':
                             return $order->getTotalPrice();
                         case 'items':
                             return $order->getItems()->toArray();
